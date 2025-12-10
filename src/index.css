@@ -111,13 +111,13 @@ form button {
 }
 
 .cart-dropdown {
-  position: absolute;
+  
   right: 20px;
   top: 60px;
   background: white;
   padding: 10px;
   border: 1px solid #ddd;
-  width: 200px;
+  
 }
 
 .cart-item {

@@ -1,6 +1,10 @@
 import { formatBRL } from "../utils/formatPrice"
+import {useParams} from "react-router-dom"
 
 export default function ProductsList(props) {
+  const params = useParams()
+  
+  
   const productsList = props.products.map(product => (
     <div key={product.id} className="product-card">
       <h3 className="product-title">{product.title}</h3>
@@ -23,6 +27,7 @@ export default function ProductsList(props) {
   return (
     <>
       <div className="products-grid">{productsList}</div>
+      {}
     </>
   )
 }

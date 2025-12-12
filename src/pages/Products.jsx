@@ -55,14 +55,16 @@ export default function Products() {
 
   return (
     <>
-      <button onClick={() => navigate("/")}>{<HouseIcon size={32} />}</button>
-      <Cart
-        cart={cart}
-        increaseQuantity={increaseQuantity}
-        decreaseQuantity={decreaseQuantity}
-        setIsCartOpen={setIsCartOpen}
-        isCartOpen={isCartOpen}
-      />
+      <div className="products-header">
+        <button onClick={() => navigate("/")}>{<HouseIcon size={32} />}</button>
+        <Cart
+          cart={cart}
+          increaseQuantity={increaseQuantity}
+          decreaseQuantity={decreaseQuantity}
+          setIsCartOpen={setIsCartOpen}
+          isCartOpen={isCartOpen}
+        />
+      </div>
       <ProductsList
         products={products}
         navigate={navigate}

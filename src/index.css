@@ -67,6 +67,25 @@ button:focus-visible {
   }
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #213547;
+    background-color: #242424;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #213547;
+  }
+  h3 {
+    color: #ffffff;
+  }
+  p {
+    color: #ffffff;
+  }
+}
+
 form {
   display: grid;
   grid-template-columns: auto 1fr;

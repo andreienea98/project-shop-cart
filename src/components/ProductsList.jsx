@@ -1,9 +1,10 @@
 import { formatBRL } from "../utils/formatPrice"
 import {useParams} from "react-router-dom"
+import AddToCartButton from "./AddToCartButton"
+// import { addToCart, increaseQuantity, decreaseQuantity } from "../utils/helpers"
 
 export default function ProductsList(props) {
   const params = useParams()
-  
   
   const productsList = props.products.map(product => (
     <div key={product.id} className="product-card">
@@ -15,12 +16,7 @@ export default function ProductsList(props) {
         alt={product.title}
       />
       <p className="price">{formatBRL(product.price)}</p>
-
-      <button
-        onClick={() => props.addToCart(product)}
-      >
-        Add to cart
-      </button>
+    <AddToCartButton addToCart={props.addToCart} product={product} />
     </div>
   ))
 

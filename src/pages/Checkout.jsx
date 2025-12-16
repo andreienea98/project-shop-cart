@@ -1,6 +1,8 @@
+import { useCart } from "../context/CartContext"
 import { formatBRL } from "../utils/formatPrice"
 
-export default function Checkout({cart}) {
+export default function Checkout() {
+  const {cart} = useCart()
   const totalPrice = cart.reduce(
     (acc, curr) => acc + curr.price * curr.quantity,
     0)

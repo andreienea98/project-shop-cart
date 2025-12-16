@@ -1,8 +1,10 @@
+import { useCart } from "../context/CartContext"
 import { formatBRL } from "../utils/formatPrice"
 import { useNavigate } from "react-router-dom"
 
 export default function ProductsList(props) {
   const navigate = useNavigate()
+  const {addToCart} = useCart()
   
   const productsList = props.products.map(product => (
     <div key={product.id} className="product-card">
@@ -15,7 +17,7 @@ export default function ProductsList(props) {
       />
       <p className="price">{formatBRL(product.price)}</p>
 
-      <button onClick={() => props.addToCart(product)}>Add to cart</button>
+      <button onClick={() => addToCart(product)}>Add to cart</button>
     </div>
   ))
 

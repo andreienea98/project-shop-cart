@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
 import { useLocation, useParams } from "react-router-dom"
 import { formatBRL } from "../utils/formatPrice"
-import Cart from "../components/Cart"
+import {useCart} from "../context/CartContext"
 
-export default function ProductDetails(props) {
+export default function ProductDetails() {
   const [product, setProduct] = useState(null)
+  const { addToCart } = useCart()
   const { id } = useParams()
 
   useEffect(() => {
@@ -26,7 +27,7 @@ export default function ProductDetails(props) {
         <p>Rating: {product.rating?.rate}</p>
         <p>{product.price && formatBRL(product.price)}</p>
         <p>{product.description}</p>
-        <button onClick={() => props.addToCart(product)}>Add to cart</button>
+        <button onClick={() => addToCart(product)}>Add to cart</button>
       </div>
     </>
   )

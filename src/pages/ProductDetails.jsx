@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 import { formatBRL } from "../utils/formatPrice"
+import Cart from "../components/Cart"
 
 export default function ProductDetails(props) {
   const [product, setProduct] = useState(null)
@@ -18,13 +19,10 @@ export default function ProductDetails(props) {
 
   return (
     <>
+      
       <div>
         <h3>{product.title}</h3>
-        <img
-          src={product.image}
-          alt={product.title}
-          style={{ width: "200px" }}
-        />
+        <img src={product.image} alt={product.title} width="200px" />
         <p>Rating: {product.rating?.rate}</p>
         <p>{product.price && formatBRL(product.price)}</p>
         <p>{product.description}</p>

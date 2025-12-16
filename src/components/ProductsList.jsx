@@ -1,26 +1,21 @@
 import { formatBRL } from "../utils/formatPrice"
-import {useParams} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export default function ProductsList(props) {
-  const params = useParams()
-  
+  const navigate = useNavigate()
   
   const productsList = props.products.map(product => (
     <div key={product.id} className="product-card">
       <h3 className="product-title">{product.title}</h3>
       <img
-        onClick={() => props.navigate(`/products/${product.id}`)}
+        onClick={() => navigate(`/products/${product.id}`)}
         width="150px"
         src={product.image}
         alt={product.title}
       />
       <p className="price">{formatBRL(product.price)}</p>
 
-      <button
-        onClick={() => props.addToCart(product)}
-      >
-        Add to cart
-      </button>
+      <button onClick={() => props.addToCart(product)}>Add to cart</button>
     </div>
   ))
 

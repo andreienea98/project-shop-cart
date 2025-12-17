@@ -19,7 +19,7 @@ export default function Products() {
       <div className="products-header">
         <button onClick={() => navigate("/")}>{<HouseIcon size={32} />}</button>
       </div>
-      <ProductsList products={products}/>
+      <ProductsList products={products} />
     </>
   )
 }

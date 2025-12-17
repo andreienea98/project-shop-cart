@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import CartContext from "./CartContext"
 
 export default function CartProvider({ children }) {

@@ -89,8 +89,11 @@ form button {
 .product-card {
   background-color: burlywood;
   border-radius: 10px;
-  cursor: pointer;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.product-card > img{
+  cursor: pointer;
 }
 
 .product-title {

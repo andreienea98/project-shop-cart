@@ -87,12 +87,26 @@ form button {
 }
 
 .product-card {
+  display: flex;
+  flex-direction: column;
   background-color: burlywood;
   border-radius: 10px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.18);
+  padding: 16px;
+  height: 100%;
 }
 
-.product-card > img{
+.product-image-wrapper {
+  height: 160px; /* fixed image zone */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-image-wrapper > img{
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
   cursor: pointer;
 }
 
@@ -100,6 +114,10 @@ form button {
   font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
+  min-height: 3.6em;
+  line-height: 1.2;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .product-description {
@@ -108,25 +126,37 @@ form button {
 }
 
 .price {
+  margin-top: auto;
+  text-align: center;
   font-size: 1.1rem;
   font-weight: bold;
 }
 
+.product-card > button {
+  margin-top: 8px;
+}
+
+.products-header {
+  display: flex;
+  justify-content: space-between; /* pushes cart button to the right */
+  align-items: center;
+  padding: 10px 20px;
+}
+
 .cart-wrapper {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
 .cart-dropdown {
   position: absolute;
-  top: 60px; /* directly UNDER the button */
+  top: 100%; /* directly UNDER the button */
   right: 0; /* aligned to the right edge of the button */
   background: white;
   padding: 10px;
   border: 1px solid #ddd;
-  width: 250px;
+  width: 280px;
   z-index: 1000;
   max-height: 300px;
   overflow-y: auto;
@@ -143,14 +173,6 @@ form button {
   gap: 8px;
   padding: 10px 0;
   border-bottom: 1px solid #ddd;
-}
-
-
-.products-header {
-  display: flex;
-  justify-content: space-between; /* pushes cart button to the right */
-  align-items: center;
-  padding: 10px 20px;
 }
 
 .cart-item-title {
@@ -178,4 +200,3 @@ form button {
 .cart-item-plus {
   grid-area: plus;
 }
-

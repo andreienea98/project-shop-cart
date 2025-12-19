@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { HouseIcon } from "@phosphor-icons/react"
+import { HouseIcon, ShoppingCartIcon } from "@phosphor-icons/react"
 import ProductsList from "../components/ProductsList"
+import Cart from "../components/Cart"
 
 export default function Products() {
   const [products, setProducts] = useState([])
@@ -18,6 +19,7 @@ export default function Products() {
     <>
       <div className="products-header">
         <button onClick={() => navigate("/")}>{<HouseIcon size={32} />}</button>
+        <Cart />
       </div>
       <ProductsList products={products} />
     </>

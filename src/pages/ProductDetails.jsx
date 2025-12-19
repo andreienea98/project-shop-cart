@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useLocation, useParams } from "react-router-dom"
 import { formatBRL } from "../utils/formatPrice"
 import {useCart} from "../context/CartContext"
+import Cart from "../components/Cart"
 
 export default function ProductDetails() {
   const [product, setProduct] = useState(null)
@@ -20,7 +21,7 @@ export default function ProductDetails() {
 
   return (
     <>
-      
+      <Cart />
       <div>
         <h3>{product.title}</h3>
         <img src={product.image} alt={product.title} width="200px" />

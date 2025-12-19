@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { formatBRL } from "../utils/formatPrice"
 import { useCart } from "../context/CartContext"
+import { ShoppingCartIcon } from "@phosphor-icons/react"
 
 export default function Cart() {
   const {
@@ -10,22 +11,30 @@ export default function Cart() {
     increaseQuantity,
     decreaseQuantity,
   } = useCart()
+
   const totalPrice = cart.reduce(
     (acc, curr) => acc + curr.price * curr.quantity,
     0
   )
 
+  const totalQty = cart.reduce((acc, curr) => acc + curr.quantity, 0)
+
+  const navigate = useNavigate()
+
   return (
     <>
-      <div className="cart-wrapper">
-        <button onClick={() => cart.length > 0 && setIsCartOpen(prev => !prev)}>
-          Cart {cart.length > 0 && cart.length}
+      <div
+        className="cart-wrapper"
+        onMouseEnter={() => setIsCartOpen(true)}
+        onMouseLeave={() => setTimeout(() => setIsCartOpen(false), 150)}
+      >
+        <button onClick={() => navigate("/cart-page")}>
+          <ShoppingCartIcon size={32} /> {cart.length > 0 && totalQty}
         </button>
         {isCartOpen && (
           <div className="cart-dropdown">
             <div className="cart-header">
               <span>Total: {formatBRL(totalPrice)}</span>
-              <Link to={"/checkout"}>Go to checkout</Link>
             </div>
             {cart.map(item => (
               <div key={item.id} className="cart-item">

@@ -8,13 +8,11 @@ import CartPage from "./pages/CartPage"
 import Cart from "./components/Cart"
 
 function App() {
-  const location = useLocation()
-  const hideCart =
-    location.pathname === "/checkout" || location.pathname === "/"
+  
 
   return (
     <>
-      {!hideCart && <Cart />}
+      
 
       <Routes>
         <Route path="/" element={<Login />} />

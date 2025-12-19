@@ -2,8 +2,8 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 export default function Login() {
-  const [password, setPassword] = useState("12345678")
-  const [email, setEmail] = useState("asd@asd")
+  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("")
   const [message, setMessage] = useState("")
   const navigate = useNavigate()
 
@@ -14,7 +14,7 @@ export default function Login() {
       navigate("/products")
     } else {
       setMessage("Sua senha tem menos de 8 caracteres!")
-      setTimeout(() => setMessage(""), 5000)
+      setTimeout(() => setMessage(""), 3000)
     }
   }
 

@@ -1,19 +1,14 @@
 import "./App.css"
-import { Route, Routes, useLocation } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 import Login from "./pages/Login"
 import Products from "./pages/Products"
 import ProductDetails from "./pages/ProductDetails"
 import Checkout from "./pages/Checkout"
 import CartPage from "./pages/CartPage"
-import Cart from "./components/Cart"
 
 function App() {
-  
-
   return (
     <>
-      
-
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/products" element={<Products />} />

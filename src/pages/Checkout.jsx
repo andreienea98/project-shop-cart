@@ -8,6 +8,8 @@ export default function Checkout() {
     (acc, curr) => acc + curr.price * curr.quantity,
     0
   )
+  
+  const totalQty = cart.reduce((acc, curr) => acc + curr.quantity, 0)
 
   const [formData, setFormData] = useState({
     cep: "",
@@ -38,7 +40,7 @@ export default function Checkout() {
   }
 
   return (
-    <div>
+    <div className="checkout-container">
       <div className="form-group">
         <h3>Select delivery address</h3>
         <form action="">
@@ -86,10 +88,11 @@ export default function Checkout() {
         </form>
       </div>
 
-      <div>
+      <div className="checkout-summary">
         {cart.map(item => (
           <div key={item.id} className="cart-item">
             <img src={item.image} alt={item.title} width="30px" />
+            <span>Qty. {totalQty}</span>
             <span className="cart-item-title">{item.title}</span>
             <span className="cart-item-price">{formatBRL(item.price)}</span>
           </div>

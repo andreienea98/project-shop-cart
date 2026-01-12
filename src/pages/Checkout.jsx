@@ -8,7 +8,7 @@ export default function Checkout() {
     (acc, curr) => acc + curr.price * curr.quantity,
     0
   )
-  
+
   const totalQty = cart.reduce((acc, curr) => acc + curr.quantity, 0)
 
   const [formData, setFormData] = useState({
@@ -27,7 +27,7 @@ export default function Checkout() {
     fetch(`https://viacep.com.br/ws/${cepOnlyNumbers}/json/`)
       .then(res => res.json())
       .then(data => {
-        if (data.erro) return
+        if (data.error) return
 
         setFormData(prev => ({
           ...prev,
@@ -40,66 +40,97 @@ export default function Checkout() {
   }
 
   return (
-    <div className="checkout-container">
-      <div className="form-group">
-        <h3>Select delivery address</h3>
-        <form action="">
-          <label htmlFor="firstname">Firstname</label>
-          <input type="text" id="firstname" name="firstname" />
+    <div className="checkout-page">
+      <div className="checkout-left">
+        <div className="checkout-card">
+          <h3>Delivery address</h3>
+          <form action="">
+            <label htmlFor="firstname">Firstname</label>
+            <input type="text" id="firstname" name="firstname" />
 
-          <label htmlFor="lastname">Lastname</label>
-          <input type="text" id="lastname" name="lastname" />
+            <label htmlFor="lastname">Lastname</label>
+            <input type="text" id="lastname" name="lastname" />
 
-          <label htmlFor="telephone">Phone number</label>
-          <input type="number" id="telephone" name="telephone" />
+            <label htmlFor="telephone">Phone number</label>
+            <input type="number" id="telephone" name="telephone" />
 
-          <label htmlFor="cep">CEP</label>
-          <input
-            type="number"
-            id="cep"
-            name="cep"
-            value={formData.cep}
-            onChange={e => setFormData({ ...formData, cep: e.target.value })}
-            onBlur={handleCepSearch}
-          />
-          <label htmlFor="street">Street name</label>
-          <input
-            type="text"
-            value={formData.street}
-            id="street"
-            name="street"
-          />
-          <label htmlFor="house-nr">Street number</label>
-          <input type="number" id="house-nr" name="house-nr" />
+            <label htmlFor="cep">CEP</label>
+            <input
+              type="number"
+              id="cep"
+              name="cep"
+              value={formData.cep}
+              onChange={e => setFormData({ ...formData, cep: e.target.value })}
+              onBlur={handleCepSearch}
+            />
+            <label htmlFor="street">Street name</label>
+            <input
+              type="text"
+              value={formData.street}
+              id="street"
+              name="street"
+            />
+            <label htmlFor="house-nr">Street number</label>
+            <input type="number" id="house-nr" name="house-nr" />
 
-          <label htmlFor="city">City</label>
-          <input type="text" value={formData.city} id="city" name="city" />
+            <label htmlFor="city">City</label>
+            <input type="text" value={formData.city} id="city" name="city" />
 
-          <label htmlFor="state">State</label>
-          <input type="text" value={formData.state} id="state" name="state" />
+            <label htmlFor="state">State</label>
+            <input type="text" value={formData.state} id="state" name="state" />
 
-          <label htmlFor="bairro">Bairro</label>
-          <input
-            type="text"
-            value={formData.bairro}
-            id="bairro"
-            name="bairro"
-          />
-        </form>
+            <label htmlFor="bairro">Bairro</label>
+            <input
+              type="text"
+              value={formData.bairro}
+              id="bairro"
+              name="bairro"
+            />
+          </form>
+        </div>
+
+        <div className="checkout-card">
+          <h3>Payment method</h3>
+        </div>
+
+        <div className="checkout-card">
+          <h3>Review items</h3>
+
+          {cart.map(item => (
+            <div key={item.id} className="checkout-item">
+              <img src={item.image} alt={item.title} />
+              <div>
+                <p>{item.title}</p>
+                <strong>{formatBRL(item.price)}</strong>
+                <p>Qty. {item.quantity}</p>
+              </div>
+            </div>
+          ))}
+          
+        <button className="place-order-btn">Place your order</button>
+        </div>
       </div>
 
-      <div className="checkout-summary">
-        {cart.map(item => (
-          <div key={item.id} className="cart-item">
-            <img src={item.image} alt={item.title} width="30px" />
-            <span>Qty. {totalQty}</span>
-            <span className="cart-item-title">{item.title}</span>
-            <span className="cart-item-price">{formatBRL(item.price)}</span>
-          </div>
-        ))}
+      <div className="checkout-right">
+        <div className="order-summary">
+          <button className="place-order-btn">Place your order</button>
 
-        <h4>Total price</h4>
-        <span>{formatBRL(totalPrice)}</span>
+          <div className="summary-row">
+            <span>Items:</span>
+            <span>{formatBRL(totalPrice)}</span>
+          </div>
+
+          <div className="summary-row">
+            <span>Shipping</span>
+            <span>Free</span>
+          </div>
+
+          <div className="summary-row total">
+            <strong>Total</strong>
+            <strong>{formatBRL(totalPrice)}</strong>
+          </div>
+
+        </div>
       </div>
     </div>
   )

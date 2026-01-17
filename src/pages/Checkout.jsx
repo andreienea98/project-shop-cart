@@ -67,6 +67,9 @@ export default function Checkout() {
             <input
               type="text"
               value={formData.street}
+              onChange={e =>
+                setFormData({ ...formData, street: e.target.value })
+              }
               id="street"
               name="street"
             />
@@ -74,15 +77,32 @@ export default function Checkout() {
             <input type="number" id="house-nr" name="house-nr" />
 
             <label htmlFor="city">City</label>
-            <input type="text" value={formData.city} id="city" name="city" />
+            <input
+              type="text"
+              value={formData.city}
+              onChange={e => setFormData({ ...formData, city: e.target.value })}
+              id="city"
+              name="city"
+            />
 
             <label htmlFor="state">State</label>
-            <input type="text" value={formData.state} id="state" name="state" />
+            <input
+              type="text"
+              value={formData.state}
+              id="state"
+              name="state"
+              onChange={e =>
+                setFormData({ ...formData, state: e.target.value })
+              }
+            />
 
             <label htmlFor="bairro">Bairro</label>
             <input
               type="text"
               value={formData.bairro}
+              onChange={e =>
+                setFormData({ ...formData, bairro: e.target.value })
+              }
               id="bairro"
               name="bairro"
             />
@@ -106,8 +126,8 @@ export default function Checkout() {
               </div>
             </div>
           ))}
-          
-        <button className="place-order-btn">Place your order</button>
+
+          <button className="place-order-btn">Place your order</button>
         </div>
       </div>
 
@@ -129,7 +149,6 @@ export default function Checkout() {
             <strong>Total</strong>
             <strong>{formatBRL(totalPrice)}</strong>
           </div>
-
         </div>
       </div>
     </div>

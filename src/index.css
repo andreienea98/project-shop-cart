@@ -223,7 +223,6 @@ form button {
   background: #ffd814;
   border: 1px solid #fcd200;
   padding: 12px;
-  font-weight: bold;
   margin-bottom: 16px;
 }
 
@@ -252,3 +251,133 @@ form button {
     position: static;
   }
 }
+
+
+/* ======== Cart Page =========== */
+
+.cart-page {
+  display: grid;
+  grid-template-columns: 3fr 1.2fr;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  align-items: start;
+}
+
+.cart-page-left {
+  min-width: 0;
+  max-width: 833px;
+}
+
+.cart-page-right {
+  position: sticky;
+  top: 20px;
+  max-width: 300px;
+}
+
+.cart-page-item {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr) 120px;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid #ddd;
+  align-items: flex-start;
+}
+
+
+.cart-page-item img {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+}
+
+.cart-page-header {
+  display: grid;
+  grid-template-columns: 180px 1fr 120px;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #ddd;
+  color: #565959;
+  font-size: 0.9rem;
+}
+
+.price-header {
+  text-align: right;
+  font-weight: bold;
+}
+
+
+.cart-page-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cart-page-title {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.cart-page-qty {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.cart-page-price {
+  text-align: right;
+  font-weight: bold;
+  font-size: 1.05rem;
+  white-space: nowrap;
+}
+
+
+.cart-page-qty-controls {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 80px;
+  gap: 8px;
+}
+
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #d5d9d9;
+  background: #f0f2f2;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+}
+
+.qty-btn span {
+  position: relative;
+  top: -1px;
+}
+
+.qty-btn:hover {
+  background: #e3e6e6;
+}
+
+.qty-value {
+  min-width: 24px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 900px) {
+  .cart-page {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-page-right {
+    position: static;
+  }
+}
+

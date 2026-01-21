@@ -9,8 +9,6 @@ export default function Checkout() {
     0
   )
 
-  const totalQty = cart.reduce((acc, curr) => acc + curr.quantity, 0)
-
   const [formData, setFormData] = useState({
     cep: "",
     street: "",
@@ -127,13 +125,13 @@ export default function Checkout() {
             </div>
           ))}
 
-          <button className="place-order-btn">Place your order</button>
+          <button className="place-order-btn">Buy Now</button>
         </div>
       </div>
 
       <div className="checkout-right">
         <div className="order-summary">
-          <button className="place-order-btn">Place your order</button>
+          <button className="place-order-btn">Buy Now</button>
 
           <div className="summary-row">
             <span>Items:</span>

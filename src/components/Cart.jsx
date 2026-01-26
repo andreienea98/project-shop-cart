@@ -26,7 +26,7 @@ export default function Cart() {
       <div
         className="cart-wrapper"
         onMouseEnter={() => setIsCartOpen(true)}
-        onMouseLeave={() => setTimeout(() => setIsCartOpen(false), 150)}
+        onMouseLeave={() => setTimeout(() => setIsCartOpen(false), 500)}
       >
         <button onClick={() => navigate("/cart-page")}>
           <ShoppingCartIcon size={32} /> {cart.length > 0 && totalQty}
@@ -34,7 +34,7 @@ export default function Cart() {
         {isCartOpen && (
           <div className="cart-dropdown">
             <div className="cart-header">
-              <span>Total: {formatBRL(totalPrice)}</span>
+              <span>Total: <strong>{formatBRL(totalPrice)}</strong></span>
             </div>
             {cart.map(item => (
               <div key={item.id} className="cart-item">

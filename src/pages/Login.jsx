@@ -19,30 +19,32 @@ export default function Login() {
   }
 
   return (
-    <>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email: </label>
-        <input
-          onChange={e => setEmail(e.target.value)}
-          value={email}
-          type="email"
-          id="email"
-          placeholder="e.g user@gmail.com"
-          required
-        />
-        <label htmlFor="password">Password: </label>
-        <input
-          onChange={event => setPassword(event.target.value)}
-          value={password}
-          type="password"
-          id="password"
-          placeholder="minimum 8 characters"
-          required
-        />
-        <button type="submit">Enter</button>
-      </form>
-      <p style={{ color: "red" }}>{message}</p>
-    </>
+    <div className="login-page">
+      <div className="login-card">
+        <h2>Login</h2>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="email">Email: </label>
+          <input
+            onChange={e => setEmail(e.target.value)}
+            value={email}
+            type="email"
+            id="email"
+            placeholder="e.g user@gmail.com"
+            required
+          />
+          <label htmlFor="password">Password: </label>
+          <input
+            onChange={event => setPassword(event.target.value)}
+            value={password}
+            type="password"
+            id="password"
+            placeholder="minimum 8 characters"
+            required
+          />
+          <button type="submit">Enter</button>
+        </form>
+        <p className="login-error">{message}</p>
+      </div>
+    </div>
   )
 }

@@ -30,7 +30,6 @@ export default function ProductsList(props) {
   return (
     <>
       <div className="products-grid">{productsList}</div>
-      {}
     </>
   )
 }

@@ -1,5 +1,7 @@
 export default function Filter({ products, selectedCat, setSelectedCat }) {
+  
   const categories = [...new Set(products.map(prod => prod.category))]
+  
 
   function handleChange(category) {
     setSelectedCat(prev =>
@@ -11,6 +13,7 @@ export default function Filter({ products, selectedCat, setSelectedCat }) {
 
   return (
     <div className="filter-section">
+      <h3>Filter By</h3>
       <h4>Category</h4>
       {categories.map(cat => (
         <div key={cat}>

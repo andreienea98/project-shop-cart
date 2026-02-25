@@ -17,8 +17,6 @@ export default function ProductDetails() {
 
   if (!product) return <p>Loading...</p>
 
-  // console.log(product.rating.rate)
-
   return (
     <>
       <Header />

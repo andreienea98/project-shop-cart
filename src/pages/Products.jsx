@@ -20,12 +20,15 @@ export default function Products() {
   return (
     <>
       <Header />
-      <Filter
-        products={products}
-        selectedCat={selectedCat}
-        setSelectedCat={setSelectedCat}
-      />
-      <ProductsList products={filteredProducts} />
+
+      <div className="flex flex-col lg:flex-row gap-6 px-6 py-6 mt-6 max-w-[1600px] mx-auto">
+        <Filter
+          products={products}
+          selectedCat={selectedCat}
+          setSelectedCat={setSelectedCat}
+        />
+        <ProductsList products={filteredProducts} />
+      </div>
     </>
   )
 }

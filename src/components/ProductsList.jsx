@@ -2,6 +2,7 @@ import { useCart } from "../context/CartContext"
 import { formatBRL } from "../utils/formatPrice"
 import { useNavigate } from "react-router-dom"
 import StarRating from "./StarRating"
+import toast from "react-hot-toast"
 
 export default function ProductsList(props) {
   const navigate = useNavigate()
@@ -26,14 +27,22 @@ export default function ProductsList(props) {
           className="max-h-full max-w-full object-contain cursor-pointer"
         />
       </div>
-      <StarRating rate={product.rating.rate} count={product.rating.count} />
+      <span className="flex justify-center mt-4">
+        <StarRating rate={product.rating.rate}/>
+      <span className="flex justify-center text-sm text-gray-700 ml-2">({product.rating.count})</span>
+      </span>
       <p className="mt-auto text-center text-lg font-bold p-4">
         {formatBRL(product.price)}
       </p>
 
       <button
-        onClick={() => addToCart(product)}
-        className="mt-2 bg-yellow-400 hover:bg-yellow-500 rounded-md py-2 font-medium transition"
+        onClick={() => {
+          addToCart(product)
+          toast.success(`${product.title} was added to cart`, {
+            duration: 2000,
+          })
+        }}
+        className="mt-2 bg-yellow-400 hover:bg-yellow-500 rounded-md py-2 font-medium active:scale-90 transition"
       >
         Add to cart
       </button>

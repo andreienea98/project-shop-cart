@@ -4,12 +4,7 @@ import { formatBRL } from "../utils/formatPrice"
 
 export default function CartPage() {
   const navigate = useNavigate()
-  const { cart, increaseQuantity, decreaseQuantity } = useCart()
-  const totalQty = cart.reduce((acc, curr) => acc + curr.quantity, 0)
-  const totalPrice = cart.reduce(
-    (acc, curr) => acc + curr.price * curr.quantity,
-    0,
-  )
+  const { cart, increaseQuantity, decreaseQuantity, totalPrice, totalQty } = useCart()
 
   return (
     <div className="cart-page">

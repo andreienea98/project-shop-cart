@@ -6,16 +6,13 @@ export default function StarRating({ rate, count }) {
   const halfStar = rounded % 1 !== 0
 
   return (
-    <div className="flex items-center justify-center gap-1 text-yellow-400 mt-4">
+    <div className="flex items-center  gap-1 text-yellow-400 ">
       {[...Array(5)].map((_, index) => {
         if (index < fullStars) return <FaStar key={index} />
         if (index === fullStars && halfStar)
           return <FaStarHalfAlt key={index} />
         return <FaRegStar key={index} />
       })}
-      <span className="text-sm text-gray-700 ml-2">
-        ({count})
-      </span>
     </div>
   )
 }

@@ -10,14 +10,12 @@ export default function Cart() {
     setIsCartOpen,
     increaseQuantity,
     decreaseQuantity,
+    totalPrice,
+    totalQty
+    // animateCart
   } = useCart()
 
-  const totalPrice = cart.reduce(
-    (acc, curr) => acc + curr.price * curr.quantity,
-    0
-  )
-
-  const totalQty = cart.reduce((acc, curr) => acc + curr.quantity, 0)
+  
 
   const navigate = useNavigate()
 
@@ -28,13 +26,22 @@ export default function Cart() {
         onMouseEnter={() => setIsCartOpen(true)}
         onMouseLeave={() => setTimeout(() => setIsCartOpen(false), 500)}
       >
-        <button onClick={() => navigate("/cart-page")}>
+        <button
+          onClick={() => {
+            navigate("/cart-page")
+            {
+              setIsCartOpen(false)
+            }
+          }}
+        >
           <ShoppingCartIcon size={32} /> {cart.length > 0 && totalQty}
         </button>
         {isCartOpen && (
           <div className="cart-dropdown">
             <div className="cart-header">
-              <span>Total: <strong>{formatBRL(totalPrice)}</strong></span>
+              <span>
+                Total: <strong>{formatBRL(totalPrice)}</strong>
+              </span>
             </div>
             {cart.map(item => (
               <div key={item.id} className="cart-item">

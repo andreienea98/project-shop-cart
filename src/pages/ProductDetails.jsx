@@ -18,49 +18,84 @@ export default function ProductDetails() {
 
   if (!product) return <p className="p-10 text-center">Loading...</p>
 
-  return (
-    <>
+   return (
+    <div className="min-h-screen bg-gray-50">
       <Header />
-      <div className="max-w-6xl mx-auto p-2">
-        <h3 className="text-2xl font-semibold mb-8">{product.title}</h3>
-
-        <div className="grid md:grid-cols-2 gap-10">
-          <div className="flex justify-center items-center bg-white p-8 rounded-lg shadow">
+      
+      <main className="max-w-7xl mx-auto px-4 py-8 md:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Section 1: Imaginea (Visual Focus) */}
+          <div className="lg:col-span-7 bg-white rounded-2xl p-6 md:p-12 shadow-sm border border-gray-100 flex justify-center sticky top-24">
             <img
               src={product.image}
               alt={product.title}
-              className="max-h-[400px] object-contain"
+              className="max-h-[500px] w-full object-contain hover:scale-105 transition-transform duration-500 ease-in-out"
             />
           </div>
 
-          <div className="flex flex-col gap-6 bg-white rounded-lg shadow max-w-78 py-2 px-4">
-            <div className="flex items-center gap-2">
-              <StarRating rate={product.rating?.rate} />
-              <span className="text-gray-700 text-sm">
-                {product.rating?.rate}
-                <span className="ml-1">({product.rating?.count} reviews)</span>
-              </span>
+          {/* Section 2: Details & Buy Box */}
+          <div className="lg:col-span-5 space-y-8">
+            <div className="space-y-4">
+              <nav className="text-xs font-medium uppercase tracking-wider text-blue-600 italic">
+                {product.category}
+              </nav>
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+                {product.title}
+              </h1>
+              
+              <div className="flex items-center gap-4 border-b border-gray-100 pb-6">
+                <StarRating rate={product.rating?.rate} />
+                <span className="text-sm font-medium text-gray-500">
+                  {product.rating?.rate} <span className="mx-1">•</span> {product.rating?.count} reviews
+                </span>
+              </div>
             </div>
 
-            <div className="text-3xl font-bold text-green-600">
-              {product.price && formatBRL(product.price)}
-            </div>
+            <p className="text-gray-600 text-lg leading-relaxed italic">
+              {product.description}
+            </p>
 
-            <button
-              onClick={() => addToCart(product)}
-              className="bg-yellow-400 px-6 py-3 rounded-lg
-                         hover:bg-gray-800 transition w-fit"
-            >
-              Add to cart
-            </button>
+            {/* Price & Action Card */}
+            <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-xl shadow-gray-200/50 space-y-6">
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl font-extrabold text-gray-900">
+                   {product.price && formatBRL(product.price)}
+                </span>
+                <span className="text-sm text-green-600 font-semibold uppercase tracking-tighter">
+                  In Stock
+                </span>
+              </div>
+
+              <div className="space-y-3">
+                <button
+                  onClick={() => addToCart(product)}
+                  className="w-full bg-[#f7ca00] hover:bg-[#f2b000] text-gray-900 font-bold py-4 rounded-full shadow-md transition-all active:scale-[0.98] focus:ring-4 focus:ring-yellow-200"
+                >
+                  Add to Cart
+                </button>
+                <button
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 rounded-full shadow-md transition-all active:scale-[0.98]"
+                >
+                  Buy Now
+                </button>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-100 text-xs text-gray-500">
+                <div className="flex flex-col">
+                  <span className="font-bold text-gray-700 uppercase">Ships from</span>
+                  <span>Direct Store</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-bold text-gray-700 uppercase">Returns</span>
+                  <span>30-day policy</span>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div className="mt-6 max-w-4xl bg-white rounded-lg shadow-md p-2">
-          <h2 className="text-xl font-semibold mb-4">Description</h2>
-          <p className="text-gray-700 leading-relaxed">{product.description}</p>
         </div>
-      </div>
-    </>
+      </main>
+    </div>
   )
 }

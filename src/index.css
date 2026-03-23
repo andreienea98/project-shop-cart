@@ -17,9 +17,6 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
-}
 
 
 form {
@@ -43,64 +40,6 @@ form label {
 form button {
   grid-column: span 2;
   margin-top: 10px;
-}
-
-.cart-wrapper {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.cart-dropdown {
-  position: absolute;
-  top: 100%; /* directly UNDER the button */
-  right: 0; /* aligned to the right edge of the button */
-  background: white;
-  padding: 10px;
-  border: 1px solid #ddd;
-  width: 280px;
-  z-index: 1000;
-  max-height: 300px;
-  overflow-y: auto;
-}
-
-.cart-item {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  grid-template-rows: auto auto;
-  grid-template-areas:
-    "title title title title title"
-    "image price minus qty plus";
-  align-items: center;
-  gap: 8px;
-  padding: 10px 0;
-  border-bottom: 1px solid #ddd;
-}
-
-.cart-item-title {
-  grid-area: title;
-  font-weight: bold;
-  font-size: 0.9rem;
-}
-
-.cart-item-image {
-  grid-area: image;
-}
-
-.cart-item-price {
-  grid-area: price;
-}
-
-.cart-item-minus {
-  grid-area: minus;
-}
-
-.cart-item-qty {
-  grid-area: qty;
-}
-
-.cart-item-plus {
-  grid-area: plus;
 }
 
 /* ===== Checkout ===== */
@@ -218,7 +157,6 @@ form button {
   align-items: flex-start;
 }
 
-
 .cart-page-item img {
   width: 180px;
   height: 180px;
@@ -239,7 +177,6 @@ form button {
   text-align: right;
   font-weight: bold;
 }
-
 
 .cart-page-info {
   display: flex;
@@ -265,7 +202,6 @@ form button {
   font-size: 1.05rem;
   white-space: nowrap;
 }
-
 
 .cart-page-qty-controls {
   display: inline-flex;

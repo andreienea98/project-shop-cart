@@ -96,6 +96,7 @@ button {
   width: 180px;
   height: 180px;
   object-fit: contain;
+  cursor: pointer;
 }
 
 .cart-page-header {
@@ -124,6 +125,7 @@ button {
   font-weight: 500;
   line-height: 1.4;
   margin-bottom: 8px;
+  cursor: pointer;
 }
 
 .cart-page-qty {

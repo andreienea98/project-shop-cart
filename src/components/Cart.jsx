@@ -90,7 +90,10 @@ export default function Cart() {
 
                   {/* Content */}
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-xs font-bold text-slate-800 line-clamp-2 leading-snug">
+                    <h4
+                      onClick={() => navigate(`/products/${item.id}`)}
+                      className="text-xs font-bold text-slate-800 line-clamp-2 leading-snug cursor-pointer hover:underline"
+                    >
                       {item.title}
                     </h4>
                     <div className="flex items-center justify-between mt-1">

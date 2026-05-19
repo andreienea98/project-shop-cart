@@ -4,7 +4,8 @@ import { formatBRL } from "../utils/formatPrice"
 
 export default function CartPage() {
   const navigate = useNavigate()
-  const { cart, increaseQuantity, decreaseQuantity, totalPrice, totalQty } = useCart()
+  const { cart, increaseQuantity, decreaseQuantity, totalPrice, totalQty } =
+    useCart()
 
   return (
     <div className="cart-page">
@@ -18,12 +19,21 @@ export default function CartPage() {
             <span className="price-header">Price</span>
           </div>
 
-          {cart.map(item => (
+          {cart.map((item) => (
             <div key={item.id} className="cart-page-item">
-              <img src={item.image} alt={item.title} />
+              <img
+                onClick={() => navigate(`/products/${item.id}`)}
+                src={item.image}
+                alt={item.title}
+              />
 
               <div className="cart-page-info">
-                <p className="cart-page-title">{item.title}</p>
+                <p
+                  onClick={() => navigate(`/products/${item.id}`)}
+                  className="cart-page-title"
+                >
+                  {item.title}
+                </p>
 
                 <div className="cart-page-qty-controls">
                   <button

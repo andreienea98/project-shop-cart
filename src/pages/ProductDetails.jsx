@@ -4,6 +4,7 @@ import { formatBRL } from "../utils/formatPrice"
 import { useCart } from "../context/CartContext"
 import Header from "../components/Header"
 import StarRating from "../components/StarRating"
+import toast from "react-hot-toast"
 
 export default function ProductDetails() {
   const [product, setProduct] = useState(null)
@@ -93,7 +94,12 @@ export default function ProductDetails() {
 
               <div className="space-y-3">
                 <button
-                  onClick={() => addToCart(product)}
+                  onClick={() => {
+                    addToCart(product)
+                    toast.success(`${product.title} was added to cart`, {
+                      duration: 2000,
+                    })
+                  }}
                   className="w-full bg-[#f7ca00] hover:bg-[#f2b000] text-gray-900 font-bold py-4 rounded-full shadow-md transition-all active:scale-[0.98] focus:ring-4 focus:ring-yellow-200"
                 >
                   Add to Cart

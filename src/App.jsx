@@ -11,11 +11,12 @@ function App() {
     <>
       <Toaster position="top-center"/>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Products />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/cart-page" element={<CartPage />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </>
   )

@@ -267,10 +267,10 @@ export default function Checkout() {
             </div>
 
             <div className="py-6 flex justify-between items-baseline">
-              <span className="text-lg font-bold text-slate-900">
+              <span className="text-lg font-semibold text-slate-900">
                 Order Total:
               </span>
-              <span className="text-2xl font-bold text-slate-900">
+              <span className="text-2xl font-semibold text-slate-900">
                 {formatBRL(totalPrice)}
               </span>
             </div>

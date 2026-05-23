@@ -98,6 +98,12 @@ export default function ProductDetails() {
                     addToCart(product)
                     toast.success(`${product.title} was added to cart`, {
                       duration: 2000,
+                      style: {
+                        fontSize: "14px",
+                        borderRadius: "12px",
+                        background: "#1e293b",
+                        color: "#fff",
+                      },
                     })
                   }}
                   className="w-full bg-[#f7ca00] hover:bg-[#f2b000] text-gray-900 font-bold py-4 rounded-full shadow-md transition-all active:scale-[0.98] focus:ring-4 focus:ring-yellow-200"

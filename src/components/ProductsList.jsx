@@ -10,13 +10,13 @@ export default function ProductsList({ products }) {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 flex-1">
-      {products.map(product => (
+      {products.map((product) => (
         <div
           key={product.id}
           className="group flex flex-col rounded-2xl bg-white p-5 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 h-full relative"
         >
           {/* image container */}
-          <div 
+          <div
             onClick={() => navigate(`/products/${product.id}`)}
             className="aspect-square w-full bg-white rounded-xl p-6 flex items-center justify-center cursor-pointer overflow-hidden mb-4"
           >
@@ -49,13 +49,18 @@ export default function ProductsList({ products }) {
               <span className="text-xl font-semibold text-slate-800 tracking-tight">
                 {formatBRL(product.price)}
               </span>
-              
+
               <button
                 onClick={() => {
                   addToCart(product)
                   toast.success(`${product.title} added`, {
                     duration: 2000,
-                    style: { fontSize: '14px', borderRadius: '12px', background: '#1e293b', color: '#fff' }
+                    style: {
+                      fontSize: "14px",
+                      borderRadius: "12px",
+                      background: "#1e293b",
+                      color: "#fff",
+                    },
                   })
                 }}
                 className="bg-yellow-400 hover:bg-yellow-500 text-slate-900 font-bold text-xs px-4 py-2.5 rounded-xl transition duration-200 shadow-[0_3px_0_rgb(202,138,4)] active:shadow-none active:translate-y-[3px]"

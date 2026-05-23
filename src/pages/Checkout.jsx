@@ -2,7 +2,11 @@ import { useState } from "react"
 import { useCart } from "../context/CartContext"
 import { useNavigate } from "react-router-dom"
 import { formatBRL } from "../utils/formatPrice"
-import { CaretLeftIcon, CreditCardIcon, MapPinAreaIcon } from "@phosphor-icons/react"
+import {
+  CaretLeftIcon,
+  CreditCardIcon,
+  MapPinAreaIcon,
+} from "@phosphor-icons/react"
 import { BsBagCheck } from "react-icons/bs"
 
 export default function Checkout() {
@@ -54,7 +58,9 @@ export default function Checkout() {
             <CaretLeftIcon size={20} />
             <span className="font-medium">Back to cart</span>
           </button>
-          <h1 className="text-xl font-bold text-slate-800 text-center">Checkout</h1>
+          <h1 className="text-xl font-bold text-slate-800 text-center">
+            Checkout
+          </h1>
         </div>
       </header>
 
@@ -75,7 +81,9 @@ export default function Checkout() {
 
             <form className="p-6 grid grid-cols-1 md:grid-cols-6 gap-4">
               <div className="md:col-span-3">
-                <label htmlFor="firstname" className={labelStyle}>First Name</label>
+                <label htmlFor="firstname" className={labelStyle}>
+                  First Name
+                </label>
                 <input
                   type="text"
                   id="firstname"
@@ -86,7 +94,9 @@ export default function Checkout() {
               </div>
 
               <div className="md:col-span-3">
-                <label htmlFor="lastname" className={labelStyle}>Last Name</label>
+                <label htmlFor="lastname" className={labelStyle}>
+                  Last Name
+                </label>
                 <input
                   type="text"
                   id="lastname"
@@ -97,7 +107,9 @@ export default function Checkout() {
               </div>
 
               <div className="md:col-span-6">
-                <label htmlFor="phone" className={labelStyle}>Phone Number</label>
+                <label htmlFor="phone" className={labelStyle}>
+                  Phone Number
+                </label>
                 <input
                   type="tel"
                   id="phone"
@@ -109,7 +121,9 @@ export default function Checkout() {
               </div>
 
               <div className="md:col-span-2">
-                <label htmlFor="cep" className={labelStyle}>CEP</label>
+                <label htmlFor="cep" className={labelStyle}>
+                  Postcode (CEP)
+                </label>
                 <input
                   type="number"
                   id="cep"
@@ -125,7 +139,9 @@ export default function Checkout() {
               </div>
 
               <div className="md:col-span-3">
-                <label htmlFor="street" className={labelStyle}>Street Name</label>
+                <label htmlFor="street" className={labelStyle}>
+                  Street Name
+                </label>
                 <input
                   type="text"
                   id="street"
@@ -139,7 +155,9 @@ export default function Checkout() {
               </div>
 
               <div className="md:col-span-1">
-                <label htmlFor="house-nr" className={labelStyle}>Nr.</label>
+                <label htmlFor="house-nr" className={labelStyle}>
+                  Nr.
+                </label>
                 <input
                   type="number"
                   id="house-nr"
@@ -150,7 +168,9 @@ export default function Checkout() {
               </div>
 
               <div className="md:col-span-2">
-                <label htmlFor="bairro" className={labelStyle}>Bairro</label>
+                <label htmlFor="bairro" className={labelStyle}>
+                  Neighbourhood
+                </label>
                 <input
                   type="text"
                   id="bairro"
@@ -164,7 +184,9 @@ export default function Checkout() {
               </div>
 
               <div className="md:col-span-3">
-                <label htmlFor="city" className={labelStyle}>City</label>
+                <label htmlFor="city" className={labelStyle}>
+                  City
+                </label>
                 <input
                   type="text"
                   id="city"
@@ -178,7 +200,9 @@ export default function Checkout() {
               </div>
 
               <div className="md:col-span-1">
-                <label htmlFor="state" className={labelStyle}>State</label>
+                <label htmlFor="state" className={labelStyle}>
+                  State
+                </label>
                 <input
                   type="text"
                   id="state"

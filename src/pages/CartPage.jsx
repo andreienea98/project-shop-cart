@@ -48,7 +48,7 @@ export default function CartPage() {
 
         {/* two columns layout */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 items-start">
-          {/* left column: products details */}
+          {/* left column: product details */}
           <div className="space-y-4">
             {cart.map((item) => (
               <div

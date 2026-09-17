@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom"
 import Cart from "./Cart"
 import { ShoppingBag, User } from "@phosphor-icons/react"
+import { useAuth } from "../context/AuthContext"
 
 export default function Header() {
   const navigate = useNavigate()
+  const { user, loading, logout } = useAuth()
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
@@ -20,14 +22,14 @@ export default function Header() {
 
         <div className="flex items-center gap-3">
           <button
-            onClick={() => navigate("/login")}
+            onClick={() => !user ? navigate("/login") : logout()}
             className="flex items-center gap-2 px-4 py-2 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100/80 active:scale-95 transition-all text-sm font-semibold"
           >
             <User size={20} weight="bold" />
-            <span>Log in</span>
+            <span>{loading ? "" : user ? `Hi, ${user.name}` : "Log in"}</span>
           </button>
 
-        <Cart />
+          <Cart />
         </div>
       </div>
     </header>

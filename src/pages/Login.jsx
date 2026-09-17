@@ -1,11 +1,13 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/AuthContext"
 
 export default function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [message, setMessage] = useState("")
   const navigate = useNavigate()
+  const { setUser } = useAuth()
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -28,10 +30,11 @@ export default function Login() {
         setMessage(data.message)
         return
       }
-
+      
+      setUser(data.user)
       navigate("/products")
     } catch (error) {
-      setMessage("GOGU")
+      setMessage(error.message)
     }
   }
 

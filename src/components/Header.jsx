@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import Cart from "./Cart"
-import { ShoppingBag } from "@phosphor-icons/react"
+import { ShoppingBag, User } from "@phosphor-icons/react"
 
 export default function Header() {
   const navigate = useNavigate()
@@ -18,7 +18,17 @@ export default function Header() {
           </span>
         </button>
 
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => navigate("/login")}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100/80 active:scale-95 transition-all text-sm font-semibold"
+          >
+            <User size={20} weight="bold" />
+            <span>Log in</span>
+          </button>
+
         <Cart />
+        </div>
       </div>
     </header>
   )

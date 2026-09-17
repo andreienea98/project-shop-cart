@@ -8,18 +8,25 @@ export default function CartProvider({ children }) {
   })
   const [isCartOpen, setIsCartOpen] = useState(false)
 
+  const totalPrice = cart.reduce(
+    (acc, curr) => acc + curr.price * curr.quantity,
+    0,
+  )
+
+  const totalQty = cart.reduce((acc, curr) => acc + curr.quantity, 0)
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart))
   }, [cart])
 
   function addToCart(product) {
-    setCart(prevCart => {
-      const existingItem = prevCart.find(item => item.id === product.id)
+    setCart((prevCart) => {
+      const existingItem = prevCart.find((item) => item.id === product.id)
       if (existingItem) {
-        return prevCart.map(item =>
+        return prevCart.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
-            : item
+            : item,
         )
       }
       return [...prevCart, { ...product, quantity: 1 }]
@@ -27,20 +34,20 @@ export default function CartProvider({ children }) {
   }
 
   function increaseQuantity(id) {
-    setCart(prevCart =>
-      prevCart.map(item =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
+      ),
     )
   }
 
   function decreaseQuantity(id) {
-    setCart(prevCart => {
+    setCart((prevCart) => {
       const updated = prevCart
-        .map(item =>
-          item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+        .map((item) =>
+          item.id === id ? { ...item, quantity: item.quantity - 1 } : item,
         )
-        .filter(item => item.quantity > 0)
+        .filter((item) => item.quantity > 0)
 
       if (updated.length === 0) {
         setIsCartOpen(false)
@@ -57,11 +64,9 @@ export default function CartProvider({ children }) {
     addToCart,
     increaseQuantity,
     decreaseQuantity,
+    totalPrice,
+    totalQty,
   }
 
-  return (
-        <CartContext.Provider value={value}>
-            {children}
-        </CartContext.Provider>     
-)
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }

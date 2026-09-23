@@ -4,6 +4,7 @@ const sessionStore = require('./models/db/sessionStore')
 const app = express()
 const authRoute = require('./routes/authRoute')
 const cors = require('cors')
+const paymentRoute = require("./routes/paymentRoute")
 
 app.use(express.json())
 
@@ -26,6 +27,7 @@ app.use(session({
 
 
 app.use('/api/auth', authRoute)
+app.use('/api/payment', paymentRoute)
 
 
 

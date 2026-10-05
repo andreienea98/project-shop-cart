@@ -11,11 +11,10 @@ import { BsBagCheck } from "react-icons/bs"
 
 import { loadStripe } from "@stripe/stripe-js"
 import {
-  Elements,
+  CheckoutElementsProvider,
   PaymentElement,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js"
+  useCheckoutElements,
+} from "@stripe/react-stripe-js/checkout"
 
 const stripePromise = loadStripe(
   "pk_test_51TbO0QEefiqLhzqLB86vj9ObafCaNHSPmh7Koc78dJqOMTRn2vXio6FJmvh5oVlbG9RnsweqieytsQarU95ZTmjm00hFjvLT1U",
@@ -26,6 +25,7 @@ export default function Checkout() {
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
+    email: "",
     cep: "",
     street: "",
     bairro: "",
@@ -38,12 +38,31 @@ export default function Checkout() {
   const [paymentError, setPaymentError] = useState(null)
 
   useEffect(() => {
-    // REAL WORLD ACTION: You will fetch this token from your backend server.
-    // For now, we simulate a mock token so the UI can process the structure.
-    // Replace this string with a real intent secret once your backend is running.
-    setClientSecret(
-      "pi_3TbPxLEefiqLhzqL0P7gzV32_secret_oFcYvHUmCjCWgy4lzMkVqOLGV",
-    )
+    async function createCheckoutSession() {
+      try {
+        const response = await fetch(
+          "http://localhost:3000/api/payment/create-checkout-session",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              amount: Math.round(totalPrice * 100),
+            }),
+          },
+        )
+
+        const data = await response.json()
+        setClientSecret(data.clientSecret)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    if (totalPrice > 0) {
+      createCheckoutSession()
+    }
   }, [totalPrice])
 
   function handleCepSearch() {
@@ -139,6 +158,24 @@ export default function Checkout() {
                   name="lastname"
                   className={inputStyle}
                   placeholder="Doe"
+                />
+              </div>
+
+              <div className="md:col-span-6">
+                <label htmlFor="email" className={labelStyle}>
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className={inputStyle}
+                  placeholder="john@example.com"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                  required
                 />
               </div>
 
@@ -266,15 +303,19 @@ export default function Checkout() {
             <div className="p-6">
               {clientSecret ? (
                 /* Wrapping the embedded input form inside Stripe's local context manager */
-                <Elements
+                <CheckoutElementsProvider
                   stripe={stripePromise}
-                  options={{ clientSecret, appearance: stripeAppearance }}
+                  options={{
+                    clientSecret,
+                    elementsOptions: { appearance: stripeAppearance },
+                  }}
                 >
                   <InlineStripeForm
+                    email={formData.email}
                     setIsProcessing={setIsProcessing}
                     setPaymentError={setPaymentError}
                   />
-                </Elements>
+                </CheckoutElementsProvider>
               ) : (
                 <div className="flex items-center gap-3 py-4">
                   <div className="w-5 h-5 border-2 border-slate-900 border-t-transparent rounded-full animate-spin" />
@@ -392,34 +433,63 @@ export default function Checkout() {
   )
 }
 
-function InlineStripeForm({ setIsProcessing, setPaymentError }) {
-  const stripe = useStripe()
-  const elements = useElements()
+function InlineStripeForm({ email, setIsProcessing, setPaymentError }) {
+  const result = useCheckoutElements()
 
   const handleStripeSubmit = async (e) => {
     e.preventDefault()
 
-    if (!stripe || !elements) return
+    console.log("Stripe form submitted")
+    console.log("Checkout result:", result)
+
+    if (result.type !== "success") {
+      console.log("Checkout is not ready:", result.type)
+      return
+    }
+
+    console.log("Checkout is ready")
+    console.log("Can confirm:", result.checkout.canConfirm)
 
     setIsProcessing(true)
     setPaymentError(null)
 
-    const { error } = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        return_url: `${window.location.origin}/payment-success`,
-      },
-    })
+    try {
+      await result.checkout.updateEmail(email)
 
-    if (error) {
-      setPaymentError(error.message)
+      const confirmResult = await result.checkout.confirm()
+
+      console.log("Confirm result:", confirmResult)
+
+      if (confirmResult.type === "error") {
+        setPaymentError(confirmResult.error.message)
+      }
+    } catch (error) {
+      setPaymentError(
+        error instanceof Error
+          ? error.message
+          : "An unexpected error occurred.",
+      )
+    } finally {
+      setIsProcessing(false)
     }
-    setIsProcessing(false)
+  }
+
+  if (result.type === "loading") {
+    return <div>Loading checkout...</div>
+  }
+
+  if (result.type === "error") {
+    return <div>{result.error.message}</div>
   }
 
   return (
     <form id="stripe-payment-form" onSubmit={handleStripeSubmit}>
-      <PaymentElement />
+      <PaymentElement
+        onChange={(event) => {
+          console.log("PaymentElement:", event)
+          console.log("Payment value:", event.value)
+        }}
+      />
     </form>
   )
 }

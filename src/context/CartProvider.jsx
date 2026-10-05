@@ -56,6 +56,11 @@ export default function CartProvider({ children }) {
     })
   }
 
+  function clearCart() {
+  setCart([])
+  setIsCartOpen(false)
+}
+
   const value = {
     cart,
     setCart,
@@ -66,6 +71,7 @@ export default function CartProvider({ children }) {
     decreaseQuantity,
     totalPrice,
     totalQty,
+    clearCart
   }
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>

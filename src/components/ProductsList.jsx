@@ -65,7 +65,7 @@ export default function ProductsList({ products }) {
                 }}
                 className="bg-yellow-400 hover:bg-yellow-500 text-slate-900 font-bold text-xs px-4 py-2.5 rounded-xl transition duration-200 shadow-[0_3px_0_rgb(202,138,4)] active:shadow-none active:translate-y-[3px]"
               >
-                Add
+                Add to cart
               </button>
             </div>
           </div>

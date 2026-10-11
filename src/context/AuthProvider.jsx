@@ -8,7 +8,7 @@ export default function AuthProvider({ children }) {
   useEffect(() => {
     async function checkUser() {
       try {
-        const response = await fetch("http://localhost:3000/api/auth/me", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
           credentials: "include",
         })
         if (!response.ok) {
@@ -28,7 +28,7 @@ export default function AuthProvider({ children }) {
   }, [])
 
   async function logout() {
-    const response = await fetch("http://localhost:3000/api/auth/logout", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/logout`, {
       method: "POST",
       credentials: "include",
     })

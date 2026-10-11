@@ -21,7 +21,7 @@ export default function PaymentSuccess() {
     async function verifyPayment() {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/payment/session/${sessionId}`,
+          `${import.meta.env.VITE_API_URL}/api/payment/session/${sessionId}`,
         )
 
         const data = await response.json()

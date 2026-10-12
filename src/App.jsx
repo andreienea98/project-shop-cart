@@ -4,9 +4,9 @@ import Products from "./pages/Products"
 import ProductDetails from "./pages/ProductDetails"
 import Checkout from "./pages/Checkout"
 import CartPage from "./pages/CartPage"
-
 import { Toaster } from "react-hot-toast"
 import PaymentSuccess from "./pages/PaymentSuccess"
+import Register from "./pages/Register"
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/cart-page" element={<CartPage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/payment-success" element={<PaymentSuccess />} />
       </Routes>
     </>

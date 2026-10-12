@@ -10,7 +10,11 @@ const register = async (req, res) => {
             user
         })
     } catch (error) {
-        res.status(400).json({ message: error.message })
+        console.error("Registration error:", error)
+
+        res.status(500).json({
+            message: "Registration failed. Please try again later.",
+        })
     }
 }
 

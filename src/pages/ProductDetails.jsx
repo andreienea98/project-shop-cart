@@ -50,7 +50,7 @@ export default function ProductDetails() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Image */}
-          <div className="lg:col-span-7 bg-white rounded-2xl p-6 md:p-12 shadow-sm border border-gray-100 flex justify-center sticky top-24">
+          <div className="lg:col-span-7 bg-white rounded-2xl p-6 md:p-12 shadow-sm border border-gray-100 flex justify-center top-24">
             <img
               src={product.image}
               alt={product.title}

@@ -1,7 +1,7 @@
 const app = require('./app')
 const connection = require('./models/db/connection')
 
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
 app.listen(PORT, async () => {
     try {

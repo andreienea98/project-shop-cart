@@ -16,9 +16,7 @@ import {
   useCheckoutElements,
 } from "@stripe/react-stripe-js/checkout"
 
-const stripePromise = loadStripe(
-  "pk_test_51TbO0QEefiqLhzqLB86vj9ObafCaNHSPmh7Koc78dJqOMTRn2vXio6FJmvh5oVlbG9RnsweqieytsQarU95ZTmjm00hFjvLT1U",
-)
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY)
 
 export default function Checkout() {
   const { cart, totalPrice, totalQty } = useCart()

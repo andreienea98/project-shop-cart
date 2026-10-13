@@ -8,10 +8,20 @@ const paymentRoute = require("./routes/paymentRoute")
 
 app.use(express.json())
 
+const allowedOrigins = ['http://localhost:5173']
+
+if (process.env.CLIENT_URL) {
+    allowedOrigins.push(process.env.CLIENT_URL)
+}
+
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: allowedOrigins,
     credentials: true
 }))
+
+const isProduction = process.env.NODE_ENV === 'production'
+
+app.set('trust proxy', 1)
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -20,7 +30,8 @@ app.use(session({
     store: sessionStore,
     cookie: {
         httpOnly: true,
-        secure: false,
+        secure: isProduction,
+        sameSite: isProduction ? 'none' : 'lax',
         maxAge: 1000 * 60 * 60 * 24
     }
 }))

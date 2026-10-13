@@ -18,7 +18,7 @@ const createCheckoutSession = async (amount) => {
       },
     ],
 
-    return_url: "http://localhost:5173/payment-success?session_id={CHECKOUT_SESSION_ID}",
+    return_url: `${process.env.CLIENT_URL}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
   })
 
   return session.client_secret

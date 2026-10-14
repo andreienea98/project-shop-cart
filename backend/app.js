@@ -40,6 +40,13 @@ app.use(session({
 app.use('/api/auth', authRoute)
 app.use('/api/payment', paymentRoute)
 
+app.get('/api/health', (req, res) => {
+    res.status(200).json({
+        status: 'ok',
+        message: 'ProjectShopCart API is running'
+    })
+})
+
 
 
 module.exports = app

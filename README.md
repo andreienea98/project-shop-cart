@@ -4,7 +4,7 @@ A full-stack e-commerce application built with React, Node.js, Express, and MySQ
 
 **Live Demo:** [https://project-shop-cart.vercel.app](https://project-shop-cart.vercel.app)
 
-**Backend API:** [https://project-shop-cart-api.onrender.com](https://project-shop-cart-api.onrender.com)
+**Backend API:** [Express REST API](https://project-shop-cart-api.onrender.com) *(deployed on Render)*
 
 **Source Code:** [GitHub Repository](https://github.com/andreienea98/project-shop-cart)
 
